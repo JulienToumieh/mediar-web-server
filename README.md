@@ -9,11 +9,11 @@ A simple family & friends media management server built using ASP.NET and Postgr
 - Basic account management (create and delete accounts)
 
 ## Screenshots
-<img width="720" height="405" alt="Home Page" src="https://github.com/user-attachments/assets/27a37502-2984-4f1e-975b-c6da02f42290" />
-<img width="720" height="405" alt="Album List Page" src="https://github.com/user-attachments/assets/141adc98-c01f-4eea-8351-a3309f1b809f" />
-<img width="720" height="405" alt="Create Album Form" src="https://github.com/user-attachments/assets/2d770369-85eb-4140-b75f-3aa7faf312bf" />
-<img width="720" height="405" alt="Album Page" src="https://github.com/user-attachments/assets/69a299ab-f10d-4e38-a062-7f3b9e3e0af2" />
-<img width="720" height="405" alt="Profile Page" src="https://github.com/user-attachments/assets/961f5004-24c4-4d2b-9ab9-0008b416bc0c" />
+<img width="720" height="405" alt="534331593-27a37502-2984-4f1e-975b-c6da02f42290" src="https://github.com/user-attachments/assets/73637179-0d55-4ef0-949c-62589e8d5a8c" />
+<img width="720" height="405" alt="534332121-141adc98-c01f-4eea-8351-a3309f1b809f" src="https://github.com/user-attachments/assets/1bda528e-3144-44f2-bb24-78a430d56a0a" />
+<img width="720" height="405" alt="534332550-2d770369-85eb-4140-b75f-3aa7faf312bf" src="https://github.com/user-attachments/assets/a4413c46-4193-427f-9225-59bafccc6d37" />
+<img width="720" height="405" alt="534332395-69a299ab-f10d-4e38-a062-7f3b9e3e0af2" src="https://github.com/user-attachments/assets/f679314a-6f26-4863-9067-d9a0ecae07b7" />
+<img width="720" height="405" alt="534332449-961f5004-24c4-4d2b-9ab9-0008b416bc0c" src="https://github.com/user-attachments/assets/5608d26c-9430-4b8d-b035-624fa49536f4" />
 
 ## Usage
 - Create an *Admin* account first
