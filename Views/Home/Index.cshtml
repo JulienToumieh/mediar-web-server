@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .brand-name-logo {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+
+        font-size: 120px;
+        margin: 0;
+        padding: 0;
+
+        background: linear-gradient(
+            to right,
+            var(--color-accent),
+            var(--color-primary)
+        );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        background-clip: text;
+    }
+
+    .paragraph-text {
+        color: var(--color-primary);
+        font-size: x-large;
+        font-family: "JetBrainsMono", Arial, sans-serif;
+    }
+
+</style>
+
+<div class="center-container v-center-container" style="flex-direction: column;">
+    <p class="paragraph-text">Welcome to</p>
+    <span class="brand-name-logo">Mediar</span>
+    <p class="paragraph-text">A minimal, self-hosted media management server.</p>
+</div>
+

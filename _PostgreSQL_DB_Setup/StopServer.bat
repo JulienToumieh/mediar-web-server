@@ -1,0 +1,1 @@
+bin\pg_ctl -D data stop

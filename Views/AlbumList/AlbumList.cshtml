@@ -1,0 +1,101 @@
+@model IEnumerable<Mediar.Models.Album>
+
+@using System.Security.Claims
+
+@{
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<style>
+    .album-container {
+        display: flex;
+        gap: 36px;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: fit-content;
+        --justify-content: space-between;
+    }
+
+    #createAlbumForm {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.295);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        justify-content: center;
+        align-items: center;
+        top: 0;
+    }
+
+    #createAlbumForm.active {
+        display: flex;
+    }
+
+
+    .album-list-container {
+        width: 60vw;
+    }
+</style>
+
+<div class="center-container">
+    <div class="album-list-container">
+        <div style="margin-bottom: 12px; margin-top: 120px;">
+            <span class="section-title">Albums</span>
+
+            @{
+                if (role == "admin" || role == "delete" || role == "edit") {
+                    <button onclick="toggleCreateForm()" class="create-button" style="margin-top: 22px; margin-right: 10px;">
+                        <img src="/icons/add-btn.png" />
+                    </button>
+                }
+            }
+
+        </div>
+
+        <div class="album-container">
+            @foreach (var album in Model)
+            {
+                @await Html.PartialAsync("_Album", album)
+            }
+        </div>
+    </div>
+</div>
+
+<div id="createAlbumForm">
+    <form asp-action="Create" class="form-background" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        
+        <button class="form-close-button" type="button" onclick="toggleCreateForm()">
+            <img src="/icons/add-btn.png" class="close-btn-icon" />
+        </button>
+        
+        <div>
+            <label class="form-field-label">Name</label><br />
+            <input class="form-text-input" type="text" name="Name" required />
+        </div>
+
+        <div>
+            <label class="form-field-label">Description</label><br />
+            <textarea class="form-textarea-input" name="Description"></textarea>
+        </div>
+
+        <div>
+            <label class="form-field-label">Cover Image</label><br />
+            <input class="form-file-input" type="file" name="CoverImage" accept="image/*" />
+        </div>
+
+        <br />
+        <button class="form-button" type="submit">Save</button>
+        
+    </form>
+</div>
+
+<script>
+    function toggleCreateForm() {
+        document
+            .getElementById("createAlbumForm")
+            .classList.toggle("active");
+    }
+</script>

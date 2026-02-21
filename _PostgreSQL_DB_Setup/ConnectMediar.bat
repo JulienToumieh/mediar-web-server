@@ -1,0 +1,1 @@
+bin\psql -U postgres -d mediar

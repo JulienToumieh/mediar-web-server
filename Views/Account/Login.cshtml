@@ -1,0 +1,35 @@
+@model bool
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@using System.Security.Claims
+
+@{
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<div class="center-container v-center-container">
+    <div>
+        <span class="form-title">Login</span>
+
+        <form asp-action="Login" method="post" class="unfixed-form-background" style="margin-top: 20px">
+            <div>
+                <label for="email" class="form-field-label">Email</label><br />
+                <input type="email" class="form-text-input" class="form-control" id="email" name="email" required />
+            </div>
+            <div>
+                <label for="password" class="form-field-label">Password</label><br />
+                <input type="password" class="form-text-input" class="form-control" id="password" name="password" required />
+            </div>
+            <button type="submit" class="form-button" style="float: none; margin-left: 0;">Login</button>
+        </form>
+
+        @{
+            if (!Model) {
+                <p class="form-extra-text">Add a new user? <a href="@Url.Action("Register", "Account")">Register here</a></p>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,49 @@
+@model Mediar.Models.Media
+
+@using System.Security.Claims
+
+@{
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<style>
+    .media {
+        break-inside: avoid;
+        margin-bottom: 22px;
+        position: relative;
+    }
+
+    .album-media {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        display: block;
+    }
+
+    .media-del-btn {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+
+        border: none;
+    }
+
+    .media-trash-icn {
+        width: 50px;
+    }
+    
+</style>
+
+<div class="media">
+    <img src="@Model.Url" alt="@Model.Url" class="album-media" />
+    @{
+        if (role == "admin" || role == "delete") {
+            <form asp-action="DeleteMedia" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this media? This action cannot be undone!');">
+                <button type="submit" class="delete-button media-del-btn">
+                    <img src="/icons/media-trash-btn.png" class="media-trash-icn" />
+                </button>
+            </form>
+        }
+    }
+    
+</div>

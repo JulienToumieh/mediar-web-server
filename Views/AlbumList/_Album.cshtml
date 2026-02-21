@@ -1,0 +1,67 @@
+@model Mediar.Models.Album
+
+<style>
+    .album-link {
+        text-decoration: none;
+    }
+
+    .album {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+    }  
+
+    .album-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 260px;
+        height: 80px;
+        border-radius: 0 0 20px 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.658);
+        padding-left: 14px;
+        padding-top: 11px;
+    }
+
+    .album-cover-img {
+        width: 260px;
+        height: 260px;
+        border-radius: 20px;
+        display: block;
+        object-fit: cover;
+    }
+
+    .album-cover-title {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        color: var(--color-primary);
+        font-size: x-large;
+        margin-bottom: 2px;
+    }
+    .album-cover-date {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        color: #e0e0e09a;
+        font-size: large;
+        margin: 0;
+    }
+
+</style>
+
+<a asp-controller="Album"
+   asp-action="Album"
+   asp-route-id="@Model.Id"
+   class="album-link" >
+
+    <div class="album" >
+        <img src="@Model.CoverImageUrl" alt="@Model.Name" class="album-cover-img" />
+
+        <div class="album-info">
+            <span class="album-cover-title">@Model.Name</span>
+            <!--<p>@Model.Description</p>-->
+            <span class="album-cover-date">@Model.DateCreated?.ToString("d")</span>
+        </div>
+    </div>
+
+</a>

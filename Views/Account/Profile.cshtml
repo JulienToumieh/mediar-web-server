@@ -1,0 +1,142 @@
+@model IEnumerable<Mediar.Models.User>
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@using System.Security.Claims
+
+@{
+    var name = User.FindFirst(ClaimTypes.Name)?.Value;
+    var email = User.FindFirst(ClaimTypes.Email)?.Value;
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<style>
+    .logout-btn {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        font-size: larger;
+        background-color: #0000;
+        color: rgb(255, 103, 103); --var(--color-primary);
+        border-style: none;
+        margin-top: 10px;
+        float: none;
+        padding: 0;
+    }
+
+    .logout-btn:hover {
+        color: rgb(228, 8, 8);
+    }
+
+    .profile-title {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        font-size: 32px;
+        color: var(--color-primary);
+    }
+
+    .profile-details-title {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        font-size: 22px;
+        color: var(--color-accent);
+        margin-bottom: 50px;
+    }
+
+    .profile-details-info {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        font-size: 20px;
+        color: var(--color-primary);
+    }
+
+    .info-field {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .users-info {
+        font-family: "JetBrainsMono", Arial, sans-serif;
+        font-size: 20px;
+        color: var(--color-primary);
+        --margin-right: 28px;
+    }
+
+    .user-account {
+        display: flex;
+        background-color: #36332b60;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        padding: 14px;
+        border-radius: 12px;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .user-account-list {
+        width: 400px;
+    }
+
+</style>
+
+
+<div class="center-container" style="margin-top: 150px;">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 25px;">
+        <div>
+            <span class="profile-title">Profile</span>
+
+            <div class="unfixed-form-background" style="margin-top: 10px;">
+
+                <div class="info-field">
+                    <span class="profile-details-title">Username:</span>  
+                    <span class="profile-details-info"> @name  </span> <br />
+                </div>
+
+                <div class="info-field">
+                    <span class="profile-details-title">Email:</span>  
+                    <span class="profile-details-info"> @email </span> <br />
+                </div>
+
+                <div class="info-field">
+                    <span class="profile-details-title">Permission:</span>  
+                    <span class="profile-details-info"> @role  </span> <br />
+                </div>   
+
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="logout-btn">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        @{
+            if (role == "admin"){
+                <div class="user-account-list">
+                    <span class="profile-title">Users</span>
+                    @foreach (var user in Model)
+                    {
+                        <div class="user-account">
+                            <span class="users-info">@user.Name</span>
+                            
+                            <span class="users-info">@user.Email</span>
+
+                            <span class="users-info">@user.Permission</span>
+
+                            <form asp-controller="Account" asp-action="DeleteUser" method="post">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="delete-button" style="float: none;">
+                                    <img src="/icons/trash-btn.png" style="width: 20px;" />
+                                </button>
+                            </form>
+
+                        </div>
+                        
+                    }
+                
+                    <p class="form-extra-text"><a href="@Url.Action("Register", "Account")">Register a new user</a></p>
+                </div>
+            }
+        }
+    </div>
+
+    
+</div>
+
